@@ -1,0 +1,15 @@
+http:
+  middlewares:
+    grafana-auth:
+      basicAuth:
+        # demo credentials: admin:test (please change later)
+        users:
+          - "admin:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/"
+
+    api-ratelimit:
+      rateLimit:
+        average: 5
+        burst: 10
+        period: 1s
+
+
