@@ -1,0 +1,36 @@
+groups:
+  - name: service-health
+    rules:
+      - alert: HighErrorRate
+        expr: |
+          sum(rate(http_server_duration_milliseconds_count{http_response_status_code=~"5.."}[5m]))
+            / sum(rate(http_server_duration_milliseconds_count[5m])) > 0.02
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High 5xx error rate"
+          description: "5xx rate is above 2% for 5 minutes."
+
+      - alert: HighLatencyP95
+        expr: |
+          histogram_quantile(0.95, sum by (le) (rate(http_server_duration_milliseconds_bucket[5m]))) > 300
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High p95 latency"
+          description: "p95 latency > 300ms for 5 minutes."
+
+  - name: infra-health
+    rules:
+      - alert: InstanceDown
+        expr: up == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance down"
+          description: "{{ $labels.job }} on {{ $labels.instance }} is down"
+
+

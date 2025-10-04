@@ -1,0 +1,13 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+
+# Observability (to be wired in a later phase)
+opentelemetry-sdk==1.27.0
+opentelemetry-exporter-otlp==1.27.0
+opentelemetry-instrumentation-fastapi==0.48b0
+opentelemetry-distro==0.48b0
+
+# Optional, when DB added to readiness checks
+psycopg2-binary==2.9.9
+redis==5.0.8
+
