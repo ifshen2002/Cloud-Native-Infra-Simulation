@@ -1,5 +1,7 @@
 ### Cloud Native Infra Simulation – Full DevOps Stack in Action
 
+要求：每做一步，都需要验证正确之后，才能做下一步。
+
 A single-source-of-truth playbook to build, observe, secure, and operate a cloud‑native system using FastAPI + Traefik + Docker Compose (later k3d/Kubernetes), with OpenTelemetry, Prometheus/Grafana/Loki/Tempo, GitHub Actions + GHCR, Terraform, and Cloudflare. Follow this README from Day 0 to production and beyond.
 
 ---
